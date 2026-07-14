@@ -5,88 +5,164 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms of Use — Antu Technology</title>
 <style>
+  :root {
+    --bg:      #09090F;
+    --surface: #111118;
+    --border:  #1D1D2B;
+    --accent:  #FF8C42;
+    --text:    #F2F2F7;
+    --text-2:  #8E8EA0;
+    --mono:    'SF Mono','Cascadia Code','Fira Code',monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#F5F4F0; --surface:#FFFFFF; --border:#DDDBD4;
+            --accent:#C45E00; --text:#0D0D14; --text-2:#6B6A7A; }
+  }
+  :root[data-theme="dark"]  { --bg:#09090F; --surface:#111118; --border:#1D1D2B;
+                               --accent:#FF8C42; --text:#F2F2F7; --text-2:#8E8EA0; }
+  :root[data-theme="light"] { --bg:#F5F4F0; --surface:#FFFFFF; --border:#DDDBD4;
+                               --accent:#C45E00; --text:#0D0D14; --text-2:#6B6A7A; }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-         background: #f8f9fa; color: #1a1a2e; min-height: 100vh;
-         display: flex; flex-direction: column; }
-  header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 20px 40px;
-           display: flex; align-items: center; gap: 12px; }
-  .logo { width: 36px; height: 36px; background: #1a1a2e; border-radius: 8px;
-          display: flex; align-items: center; justify-content: center;
-          color: #fff; font-weight: 700; font-size: 18px; }
-  header h1 { font-size: 18px; font-weight: 600; color: #1a1a2e; }
-  main { flex: 1; padding: 60px 24px; }
-  .content { max-width: 720px; margin: 0 auto;
-             background: #fff; border-radius: 16px; padding: 56px 48px;
-             box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.04); }
-  h2 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-  .updated { color: #9ca3af; font-size: 14px; margin-bottom: 40px; }
-  h3 { font-size: 17px; font-weight: 600; margin: 32px 0 12px; color: #1a1a2e; }
-  p, li { color: #4b5563; line-height: 1.75; margin-bottom: 12px; font-size: 15px; }
-  ul { padding-left: 20px; margin-bottom: 12px; }
-  a { color: #0369a1; }
-  footer { text-align: center; padding: 24px; font-size: 13px; color: #9ca3af;
-           border-top: 1px solid #e5e7eb; background: #fff; }
-  footer a { color: #6b7280; text-decoration: none; margin: 0 8px; }
+  body {
+    font-family: -apple-system,'Helvetica Neue',Arial,sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(9,9,15,.88);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (prefers-color-scheme: light) { .site-nav { background: rgba(245,244,240,.9); } }
+  :root[data-theme="dark"]  .site-nav { background: rgba(9,9,15,.88); }
+  :root[data-theme="light"] .site-nav { background: rgba(245,244,240,.9); }
+
+  .wordmark {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-back {
+    font-family: var(--mono); font-size: 12px; color: var(--text-2);
+    text-decoration: none; letter-spacing: 0.04em; transition: color .15s;
+  }
+  .nav-back:hover { color: var(--accent); }
+
+  main { flex: 1; padding: 64px 48px 96px; }
+  .content {
+    max-width: 680px; margin: 0 auto;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 56px 52px;
+  }
+
+  .doc-eyebrow {
+    display: block; font-family: var(--mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 6px; line-height: 1.15;
+  }
+  .updated { font-family: var(--mono); font-size: 12px; color: var(--text-2); margin-bottom: 48px; }
+
+  h2 {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin: 36px 0 10px; letter-spacing: -0.01em;
+  }
+  h2::before {
+    content: ''; display: inline-block; width: 16px; height: 2px;
+    background: var(--accent); margin-right: 10px;
+    vertical-align: middle; border-radius: 1px;
+  }
+  p, li { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 10px; }
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    padding: 28px 48px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-copy { font-family: var(--mono); font-size: 12px; color: var(--text-2); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 13px; color: var(--text-2); text-decoration: none; transition: color .15s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .site-nav, main, footer { padding-left: 24px; padding-right: 24px; }
+    .content { padding: 36px 28px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">A</div>
-  <h1>Antu Technology</h1>
-</header>
+
+<nav class="site-nav">
+  <a class="wordmark" href="/">Antu<span class="dot">.</span>Technology</a>
+  <a class="nav-back" href="/">← Home</a>
+</nav>
+
 <main>
   <div class="content">
-    <h2>Terms of Use</h2>
+    <span class="doc-eyebrow">Legal</span>
+    <h1>Terms of Use</h1>
     <p class="updated">Last updated: July 14, 2026</p>
 
-    <h3>1. Acceptance</h3>
-    <p>By receiving emails from Antu Technology or its customers, or by visiting
-       this website, you agree to these Terms of Use. If you do not agree, please
-       unsubscribe using the link in any email you receive from us.</p>
+    <h2>Acceptance</h2>
+    <p>By receiving emails from Antu Technology or its customers, or by visiting this website,
+       you agree to these Terms. If you do not agree, please unsubscribe via the link in any
+       email you receive from us.</p>
 
-    <h3>2. Email Communications</h3>
-    <p>Antu Technology sends email only to recipients who have subscribed or
-       otherwise provided consent. Every email includes a clear unsubscribe
-       mechanism. We comply with applicable anti-spam laws including Taiwan's
-       Personal Data Protection Act (個人資料保護法).</p>
+    <h2>Email Communications</h2>
+    <p>Antu Technology sends email only to recipients who have subscribed or otherwise provided
+       consent. Every email includes a clear unsubscribe mechanism. We comply with applicable
+       anti-spam laws including Taiwan's Personal Data Protection Act (個人資料保護法).</p>
 
-    <h3>3. AMP for Email Technology</h3>
-    <p>Some emails use AMP for Email, an open standard that enables interactive
-       content in supported mail clients. AMP emails follow the AMP for Email
-       specification and do not execute arbitrary code on your device.</p>
+    <h2>AMP for Email</h2>
+    <p>Some emails use AMP for Email, an open standard enabling interactive content in supported
+       mail clients. AMP emails follow the AMP for Email specification and do not execute
+       arbitrary code on your device.</p>
 
-    <h3>4. Prohibited Use</h3>
-    <p>You may not use information contained in our emails to:</p>
+    <h2>Prohibited Use</h2>
+    <p>You may not use information contained in our emails or services to:</p>
     <ul>
       <li>Harass, spam, or harm any person</li>
       <li>Violate any applicable law or regulation</li>
       <li>Misrepresent your identity or affiliation with Antu Technology</li>
     </ul>
 
-    <h3>5. Intellectual Property</h3>
-    <p>All content in our emails and on this website is owned by Antu Technology
-       or its licensors. You may not reproduce or redistribute it without written
-       permission.</p>
+    <h2>Intellectual Property</h2>
+    <p>All content on this website and in our emails is owned by Antu Technology or its
+       licensors. You may not reproduce or redistribute it without written permission.</p>
 
-    <h3>6. Disclaimer</h3>
-    <p>Our services are provided "as is" without warranties of any kind. Antu
-       Technology is not liable for any indirect, incidental, or consequential
-       damages arising from use of our services.</p>
+    <h2>Disclaimer</h2>
+    <p>Our services are provided "as is" without warranties of any kind. Antu Technology
+       is not liable for any indirect, incidental, or consequential damages arising from
+       use of our services.</p>
 
-    <h3>7. Governing Law</h3>
-    <p>These terms are governed by the laws of Taiwan (R.O.C.). Any disputes
-       shall be resolved in the courts of Taiwan.</p>
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of Taiwan (R.O.C.). Any disputes shall be
+       resolved in the courts of Taiwan.</p>
 
-    <h3>8. Contact</h3>
-    <p>Questions: <a href="mailto:admin@antu-technology.com">admin@antu-technology.com</a></p>
+    <h2>Contact</h2>
+    <p><a href="mailto:info@antu-technology.com">info@antu-technology.com</a></p>
   </div>
 </main>
+
 <footer>
-  <a href="/">Home</a>
-  <a href="/privacy">Privacy Policy</a>
-  <a href="/terms">Terms of Use</a>
-  &copy; 2026 Antu Technology
+  <span class="footer-copy">&copy; 2026 Antu Technology</span>
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
 </footer>
+
 </body>
 </html>

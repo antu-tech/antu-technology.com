@@ -5,95 +5,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Antu Technology</title>
 <style>
+  :root {
+    --bg:      #09090F;
+    --surface: #111118;
+    --border:  #1D1D2B;
+    --accent:  #FF8C42;
+    --text:    #F2F2F7;
+    --text-2:  #8E8EA0;
+    --mono:    'SF Mono','Cascadia Code','Fira Code',monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#F5F4F0; --surface:#FFFFFF; --border:#DDDBD4;
+            --accent:#C45E00; --text:#0D0D14; --text-2:#6B6A7A; }
+  }
+  :root[data-theme="dark"]  { --bg:#09090F; --surface:#111118; --border:#1D1D2B;
+                               --accent:#FF8C42; --text:#F2F2F7; --text-2:#8E8EA0; }
+  :root[data-theme="light"] { --bg:#F5F4F0; --surface:#FFFFFF; --border:#DDDBD4;
+                               --accent:#C45E00; --text:#0D0D14; --text-2:#6B6A7A; }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-         background: #f8f9fa; color: #1a1a2e; min-height: 100vh;
-         display: flex; flex-direction: column; }
-  header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 20px 40px;
-           display: flex; align-items: center; gap: 12px; }
-  .logo { width: 36px; height: 36px; background: #1a1a2e; border-radius: 8px;
-          display: flex; align-items: center; justify-content: center;
-          color: #fff; font-weight: 700; font-size: 18px; }
-  header h1 { font-size: 18px; font-weight: 600; color: #1a1a2e; }
-  main { flex: 1; padding: 60px 24px; }
-  .content { max-width: 720px; margin: 0 auto;
-             background: #fff; border-radius: 16px; padding: 56px 48px;
-             box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.04); }
-  h2 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-  .updated { color: #9ca3af; font-size: 14px; margin-bottom: 40px; }
-  h3 { font-size: 17px; font-weight: 600; margin: 32px 0 12px; color: #1a1a2e; }
-  p, li { color: #4b5563; line-height: 1.75; margin-bottom: 12px; font-size: 15px; }
-  ul { padding-left: 20px; margin-bottom: 12px; }
-  a { color: #0369a1; }
-  footer { text-align: center; padding: 24px; font-size: 13px; color: #9ca3af;
-           border-top: 1px solid #e5e7eb; background: #fff; }
-  footer a { color: #6b7280; text-decoration: none; margin: 0 8px; }
+  body {
+    font-family: -apple-system,'Helvetica Neue',Arial,sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(9,9,15,.88);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (prefers-color-scheme: light) { .site-nav { background: rgba(245,244,240,.9); } }
+  :root[data-theme="dark"]  .site-nav { background: rgba(9,9,15,.88); }
+  :root[data-theme="light"] .site-nav { background: rgba(245,244,240,.9); }
+
+  .wordmark {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-back {
+    font-family: var(--mono); font-size: 12px; color: var(--text-2);
+    text-decoration: none; letter-spacing: 0.04em; transition: color .15s;
+  }
+  .nav-back:hover { color: var(--accent); }
+
+  main { flex: 1; padding: 64px 48px 96px; }
+  .content {
+    max-width: 680px; margin: 0 auto;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 56px 52px;
+  }
+
+  .doc-eyebrow {
+    display: block; font-family: var(--mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 6px; line-height: 1.15;
+  }
+  .updated { font-family: var(--mono); font-size: 12px; color: var(--text-2); margin-bottom: 48px; }
+
+  h2 {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin: 36px 0 10px; letter-spacing: -0.01em;
+  }
+  h2::before {
+    content: ''; display: inline-block; width: 16px; height: 2px;
+    background: var(--accent); margin-right: 10px;
+    vertical-align: middle; border-radius: 1px;
+  }
+  p, li { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 10px; }
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    padding: 28px 48px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-copy { font-family: var(--mono); font-size: 12px; color: var(--text-2); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 13px; color: var(--text-2); text-decoration: none; transition: color .15s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .site-nav, main, footer { padding-left: 24px; padding-right: 24px; }
+    .content { padding: 36px 28px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">A</div>
-  <h1>Antu Technology</h1>
-</header>
+
+<nav class="site-nav">
+  <a class="wordmark" href="/">Antu<span class="dot">.</span>Technology</a>
+  <a class="nav-back" href="/">← Home</a>
+</nav>
+
 <main>
   <div class="content">
-    <h2>Privacy Policy</h2>
+    <span class="doc-eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
     <p class="updated">Last updated: July 14, 2026</p>
 
-    <h3>1. Who We Are</h3>
-    <p>Antu Technology ("we," "us," or "our") operates an email-marketing platform
-       for Taiwan's education sector. Our registered email address is
-       <a href="mailto:admin@antu-technology.com">admin@antu-technology.com</a>.</p>
+    <h2>Who We Are</h2>
+    <p>Antu Technology ("we," "us," or "our") builds email marketing infrastructure for businesses.
+       We are reachable at <a href="mailto:info@antu-technology.com">info@antu-technology.com</a>.</p>
 
-    <h3>2. Information We Collect</h3>
-    <p>When you subscribe to communications from us or our customers, we may collect:</p>
+    <h2>Information We Collect</h2>
+    <p>When you or your subscribers interact with services we operate, we may collect:</p>
     <ul>
       <li>Email address</li>
       <li>Name (if provided)</li>
-      <li>Email engagement data (opens, clicks, unsubscribes)</li>
-      <li>Device and browser type (from email client headers)</li>
+      <li>Email engagement signals (opens, clicks, unsubscribes)</li>
+      <li>Device and mail client type (from standard email headers)</li>
     </ul>
 
-    <h3>3. How We Use Your Information</h3>
+    <h2>How We Use Your Information</h2>
     <p>We use collected information solely to:</p>
     <ul>
-      <li>Send email campaigns you have subscribed to</li>
-      <li>Measure campaign performance and improve deliverability</li>
-      <li>Honor unsubscribe requests promptly</li>
+      <li>Deliver email campaigns subscribers have opted into</li>
+      <li>Measure deliverability and campaign performance</li>
+      <li>Honor unsubscribe and deletion requests promptly</li>
     </ul>
-    <p>We do not sell, rent, or share personal data with third parties for their
-       own marketing purposes.</p>
+    <p>We do not sell, rent, or share personal data with third parties for their own marketing.</p>
 
-    <h3>4. AMP for Email</h3>
-    <p>Some emails we send use AMP for Email technology, which enables interactive
-       content within supported mail clients (Gmail, Yahoo Mail, Mail.ru). AMP emails
-       may make server-side requests to load dynamic content. No additional personal
-       data is collected beyond standard email engagement signals.</p>
+    <h2>AMP for Email</h2>
+    <p>Some messages we send use AMP for Email, an open standard that enables interactive
+       content inside supported mail clients (Gmail, Yahoo Mail, Mail.ru). AMP emails may
+       make server-side requests to render dynamic content. No additional personal data is
+       collected beyond standard engagement signals.</p>
 
-    <h3>5. Data Retention</h3>
-    <p>We retain subscriber data for as long as you remain subscribed. Upon
-       unsubscribe, your data is removed within 30 days except where retention is
-       required by law.</p>
+    <h2>Data Retention</h2>
+    <p>We retain subscriber data for as long as the subscription is active. Upon unsubscribe,
+       data is removed within 30 days except where retention is required by law.</p>
 
-    <h3>6. Your Rights</h3>
-    <p>You may request access to, correction of, or deletion of your personal data
-       at any time by contacting us at
-       <a href="mailto:admin@antu-technology.com">admin@antu-technology.com</a>.
-       All emails include an unsubscribe link.</p>
+    <h2>Your Rights</h2>
+    <p>You may request access to, correction of, or deletion of your personal data at any
+       time by contacting <a href="mailto:info@antu-technology.com">info@antu-technology.com</a>.
+       Every email we send includes a one-click unsubscribe link.</p>
 
-    <h3>7. Security</h3>
-    <p>We implement industry-standard measures including TLS encryption for email
-       transmission, SPF, DKIM, and DMARC authentication on our sending domain.</p>
+    <h2>Security</h2>
+    <p>We use TLS encryption for all email transmission, and authenticate our sending domain
+       with SPF, DKIM, and DMARC.</p>
 
-    <h3>8. Contact</h3>
-    <p>Questions about this policy: <a href="mailto:admin@antu-technology.com">admin@antu-technology.com</a></p>
+    <h2>Contact</h2>
+    <p><a href="mailto:info@antu-technology.com">info@antu-technology.com</a></p>
   </div>
 </main>
+
 <footer>
-  <a href="/">Home</a>
-  <a href="/privacy">Privacy Policy</a>
-  <a href="/terms">Terms of Use</a>
-  &copy; 2026 Antu Technology
+  <span class="footer-copy">&copy; 2026 Antu Technology</span>
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
 </footer>
+
 </body>
 </html>
